@@ -1,9 +1,44 @@
-import React from "react";
+import React, { useState } from "react";
+import mushroom from '../images/mushroom_hive.jpg'
+import { Menu } from 'lucide-react'
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <div className="p-6 flex justify-center align-middle bg-amber-200">
-      <h4 className="text-xl font-bold">Navbar</h4>
+    <div className="p-6 flex flex-col bg-amber-200">
+      <div className="flex justify-between">
+        <div>
+          <img src={mushroom} alt="Logo" className="h-12 w-12" />
+        </div>
+        <div className="hidden md:flex justify-around gap-8">
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Home</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">About</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Company</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Services</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Contact</p>
+        </div>
+        <div className="md:hidden">
+          <button onClick={toggleMenu}>
+            <Menu size={50} />
+          </button>
+        </div>
+      </div>
+      
+      {/* Mobile menu */}
+      {isOpen && (
+        <div className="md:hidden flex flex-col items-center gap-4 mt-4">
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Home</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">About</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Company</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Services</p>
+          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Contact</p>
+        </div>
+      )}
     </div>
   );
 };
