@@ -11,36 +11,53 @@ const Navbar = () => {
   };
 
   return (
-    <div className="p-6 flex flex-col ">
-      <div className="flex justify-between">
-        <div>
-          <img src={logo} alt="Logo" className="h-30 w-30" />
+    <nav className="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
+      <div className="max-w-7xl mx-auto p-4">
+        <div className="flex justify-between items-center">
+          <div className="flex items-center">
+            <img src={logo} alt="Logo" className="h-16 w-auto md:h-24 md:w-auto" />
+          </div>
+          
+          <div className="hidden md:flex space-x-12">
+            {['Home', 'About', 'Company', 'Services', 'Contact'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-lg font-semibold text-gray-700 hover:text-amber-600 transition-colors duration-200 ease-in-out"
+              >
+                {item}
+              </a>
+            ))}
+          </div>
+
+          <div className="md:hidden">
+            <button 
+              onClick={toggleMenu}
+              className="p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+            >
+              <Menu size={32} />
+            </button>
+          </div>
         </div>
-        <div className="hidden md:flex justify-around gap-8">
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Home</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">About</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Company</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Services</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Contact</p>
-        </div>
-        <div className="md:hidden">
-          <button onClick={toggleMenu}>
-            <Menu size={50} />
-          </button>
-        </div>
+        
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden py-4 border-t">
+            <div className="flex flex-col space-y-6">
+              {['Home', 'About', 'Company', 'Services', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-xl font-semibold text-gray-700 hover:text-amber-600 transition-colors duration-200 ease-in-out text-center"
+                >
+                  {item}
+                </a>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-      
-      {/* Mobile menu */}
-      {isOpen && (
-        <div className="md:hidden flex flex-col items-center gap-4 mt-4">
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Home</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">About</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Company</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Services</p>
-          <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Contact</p>
-        </div>
-      )}
-    </div>
+    </nav>
   );
 };
 
