@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import mushroom from '../images/mushroom_hive.jpg'
+import logo from '../images/logo.png'
 import { Menu } from 'lucide-react'
 
 const Navbar = () => {
@@ -10,10 +11,10 @@ const Navbar = () => {
   };
 
   return (
-    <div className="p-6 flex flex-col bg-amber-200">
+    <div className="p-6 flex flex-col ">
       <div className="flex justify-between">
         <div>
-          <img src={mushroom} alt="Logo" className="h-12 w-12" />
+          <img src={logo} alt="Logo" className="h-30 w-30" />
         </div>
         <div className="hidden md:flex justify-around gap-8">
           <p className="font-semibold text-lg hover:text-amber-700 cursor-pointer">Home</p>
