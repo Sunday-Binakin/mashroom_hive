@@ -1,6 +1,6 @@
 import React from "react";
-import firstMushroom from "../../../images/mushroom_1.jpg"
-import secondMushroom from "../../../images/mushroom_2.jpg"
+import firstMushroom from "../../../../public/images/mushroom_1.jpg"
+import secondMushroom from "../../../../public/images/mushroom_2.jpg"
 
 const AboutProduct = () => {
   return (
