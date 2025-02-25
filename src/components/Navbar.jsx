@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import mushroom from '../images/mushroom_hive.jpg'
-import logo from '../images/logo.png'
+// import mushroom from '../images/mushroom_hive.jpg'
+import logo from '../../public/images/logo.png'
 import { Menu } from 'lucide-react'
 
 const Navbar = () => {

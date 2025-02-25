@@ -1,7 +1,7 @@
 import React from "react";
-import mushroom from '../images/mushroom_hive.jpg'
+// import mushroom from '../images/mushroom_hive.jpg'
 // import { FaFacebook } from 'react-icons/fa';
-import logo from '../images/logo.png'
+import logo from '../../public/images/logo.png'
 import { FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
