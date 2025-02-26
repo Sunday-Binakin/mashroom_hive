@@ -51,7 +51,7 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative h-[80vh] overflow-hidden">
+    <div className="relative h-[80vh] overflow-hidden border-b-2">
       <Slider {...settings} className="h-full">
         {slides.map((slide, index) => (
           <div 
