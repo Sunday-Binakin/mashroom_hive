@@ -4,7 +4,7 @@ import secondMushroom from "../../../../public/images/mushroom_2.jpg"
 
 const AboutProduct = () => {
   return (
-    <div className="bg-gradient-to-b from-stone-50 to-stone-100 py-16">
+    <div className="bg-gradient-to-b from-stone-50 to-stone-100 py-16 font-['Poppins']">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
