@@ -76,10 +76,10 @@ const Contact = () => {
           {/* Contact Information */}
           <div className="w-full md:w-5/12">
             <Paper elevation={0} sx={{ p: 4, height: '100%', bgcolor: 'transparent' }}>
-              <Typography variant="h4" component="h2" gutterBottom fontWeight="bold" sx={{ color: '#2e7d32' }}>
+              <Typography variant="h4" component="h2" gutterBottom fontWeight="bold" sx={{ color: '#2e7d32', fontFamily: 'Poppins' }}>
                 Get in Touch
               </Typography>
-              <Typography variant="body1" sx={{ color: '#1b5e20' }} paragraph>
+              <Typography variant="body1" sx={{ color: '#1b5e20', fontFamily: 'Poppins' }} paragraph>
                 Feel free to reach out. I'd love to hear from you!
               </Typography>
 
