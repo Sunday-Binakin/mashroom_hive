@@ -21,7 +21,7 @@ const AboutInnovator = () => {
       {/* Main Card Container */}
       <div className="relative bg-white shadow-2xl rounded-lg overflow-hidden flex flex-col md:flex-row max-w-5xl transition-transform duration-500 transform hover:scale-105">
         {/* Image Section */}
-        <div className="w-full md:w-1/2">
+        <div className="w-full md:h-[40rem] md:w-1/2">
           <img
             src={Innovator}
             alt="Innovator"
