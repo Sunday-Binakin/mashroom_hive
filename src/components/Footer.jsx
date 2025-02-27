@@ -11,16 +11,16 @@ const Footer = () => {
     <footer className="relative bg-gradient-to-br from-emerald-50 via-green-50 to-teal-50">
       {/* Decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 via-green-500 to-teal-400"></div>
-      
+
       <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16">
         <div className="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-12 gap-8 md:gap-12">
           {/* Brand Section */}
           <div className="md:col-span-4 group">
             <div className="transform transition-all duration-500 hover:scale-105">
               <div className="bg-white rounded-lg p-4 shadow-sm mb-6 w-fit">
-                <img 
-                  src={logo} 
-                  alt="Company Logo" 
+                <img
+                  src={logo}
+                  alt="Company Logo"
                   className="h-20 sm:h-28 w-auto object-contain"
                 />
               </div>
@@ -38,8 +38,8 @@ const Footer = () => {
             </h3>
             <nav className="flex flex-col space-y-3 sm:space-y-4">
               {['Home', 'About', 'Company', 'Services', 'Contact'].map((item) => (
-                <a 
-                  key={item} 
+                <a
+                  key={item}
                   href={`#${item.toLowerCase()}`}
                   className="text-gray-600 hover:text-emerald-600 transform hover:translate-x-2 transition-all duration-300 w-fit text-base sm:text-lg group font-['Poppins']"
                 >
@@ -58,27 +58,28 @@ const Footer = () => {
               Connect With Us
               <span className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-emerald-500"></span>
             </h3>
-            
+
             {/* Social Icons */}
-            <div className="flex space-x-4 sm:space-x-6">
+            <div className="flex justify-center items-center space-x-2 sm:space-x-6">
               {[
                 { Icon: FaFacebookF, color: "hover:bg-blue-600" },
                 { Icon: FaInstagram, color: "hover:bg-pink-600" },
                 { Icon: FaWhatsapp, color: "hover:bg-green-600" }
               ].map(({ Icon, color }) => (
-                <a 
+                <a
                   key={color}
                   href="#"
-                  className={`p-3 rounded-full bg-white shadow-lg transform hover:-translate-y-2 transition-all duration-500 ${color} hover:text-white group`}
+                  className={`p-2 sm:p-3 rounded-full bg-white shadow-lg transform hover:-translate-y-2 transition-all duration-500 ${color} hover:text-white group`}
                 >
-                  <Icon size={24} className="transform transition-transform group-hover:rotate-12" />
+                  <Icon size={20} className="transform transition-transform group-hover:rotate-12 sm:size-24" />
                 </a>
               ))}
             </div>
 
+
             {/* Contact Info */}
             <div className="space-y-3 sm:space-y-4">
-              <a 
+              <a
                 href="mailto:info@gmail.com"
                 className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
               >
@@ -87,7 +88,7 @@ const Footer = () => {
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </a>
-              <a 
+              <a
                 href="tel:+233000000000"
                 className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
               >
@@ -103,7 +104,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="mt-12 sm:mt-16 pt-6 sm:pt-8 border-t border-gray-200">
           <p className="text-center text-gray-600 text-sm sm:text-base font-['Poppins']">
-            © {new Date().getFullYear()} All Rights Reserved • 
+            © {new Date().getFullYear()} All Rights Reserved •
             <span className="text-emerald-600 animate-pulse"> ❤ </span>
           </p>
         </div>
