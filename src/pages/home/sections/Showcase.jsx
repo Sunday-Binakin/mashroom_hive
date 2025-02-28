@@ -1,95 +1,109 @@
 import React from "react";
+import product1 from '/public//images/product_images/A0004.jpg'
+import product2 from '/public//images/product_images/A0005.jpg'
+import product3 from '/public//images/product_images/A0006.jpg'
+import product4 from '/public//images/product_images/A0007.jpg'
+import product5 from '/public//images/product_images/A0008.jpg'
+import product6 from '/public//images/product_images/A0009.jpg'
+import product7 from '/public//images/product_images/A0010.jpg'
+import product8 from '/public//images/product_images/A0011.jpg'
+import product9 from '/public//images/product_images/A0012.jpg'
+import product10 from '/public//images/product_images/A0013.jpg'
+import product11 from '/public//images/product_images/A0014.jpg'
+import product12 from '/public//images/product_images/A0015.jpg'
+import product13 from '/public//images/product_images/A0016.jpg'
+ 
 
 const Showcase = () => {
   const mushrooms = [
     {
       id: 1,
       name: "Shiitake Mushroom",
-      image: "/public//images/product_images/A0004.jpg", 
+      image:{product1}, 
       description: "Rich umami flavor, perfect for Asian cuisine",
       price: "GH₵8.99"
     },
     {
       id: 2,
       name: "Oyster Mushroom",
-      image: "/public//images/product_images/A0005.jpg",
+      image: {product2},
       description: "Delicate texture with mild seafood-like flavor",
       price: "GH₵7.99"
     },
     {
       id: 3,
       name: "King Trumpet",
-      image: "/public//images/product_images/A0007.jpg",
+      image: {product3},
       description: "Meaty texture with subtle pine notes",
       price: "GH₵9.99"
     },
     {
       id: 4,
       name: "Lion's Mane",
-      image: "/public//images/product_images/A0009.jpg", 
+      image: {product4}, 
       description: "Unique texture, known for cognitive benefits",
       price: "GH₵12.99"
     },
     {
       id: 5,
       name: "Reishi",
-      image: "/public//images/product_images/A0010.jpg",
+      image: {product5},
       description: "Traditional medicinal mushroom for wellness",
       price: "GH₵14.99"
     },
     {
       id: 6,
       name: "Maitake",
-      image: "/public//images/product_images/A0011.jpg",
+      image: {product6},
       description: "Rich, woodsy flavor with immune benefits",
       price: "GH₵11.99"
     },
     {
       id: 7,
       name: "Enoki",
-      image: "/public//images/product_images/A0012.jpg",
+      image: {product7},
       description: "Delicate, crispy texture perfect for soups",
       price: "GH₵6.99"
     },
     {
       id: 8,
       name: "Cordyceps",
-      image: "/public//images/product_images/A0013.jpg",
+      image: {product8},
       description: "Energy-boosting medicinal mushroom",
       price: "GH₵15.99"
     },
     {
       id: 9,
       name: "Chaga",
-      image: "/public//images/product_images/A0014.jpg",
+      image: {product9},
       description: "Powerful antioxidant properties",
       price: "GH₵13.99"
     },
     {
       id: 10,
       name: "Turkey Tail",
-      image: "/public//images/product_images/A0015.jpg",
+      image: {product10},
       description: "Beautiful pattern, immune system support",
       price: "GH₵10.99"
     },
     {
       id: 11,
       name: "Wood Ear",
-      image: "/public//images/product_images/A0016.jpg",
+      image: {product11},
       description: "Crunchy texture, great in Asian dishes",
       price: "GH₵8.99"
     },
     {
       id: 12,
       name: "Porcini",
-      image: "/public//images/product_images/A0017.jpg", 
+      image: {product12}, 
       description: "Rich, nutty flavor perfect for Italian cuisine",
       price: "GH₵16.99"
     },
     {
       id: 13,
       name: "King Trumpet",
-      image: "/public//images/product_images/A0018.jpg",
+      image: {product13},
       description: "Meaty texture with mild seafood notes",
       price: "GH₵13.99"
     }
