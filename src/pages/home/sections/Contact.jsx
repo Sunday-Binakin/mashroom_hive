@@ -70,13 +70,44 @@ const Contact = () => {
   };
 
   return (
-    <Box sx={{ py: 8, bgcolor: '#f5fff5' }}>
+    <Box sx={{ py: { xs: 4, md: 8 }, bgcolor: '#f5fff5' }}>
       <Container maxWidth="lg">
-        <div className="flex flex-col md:flex-row gap-4">
+        <Typography variant="h2" component="h1" align="center" gutterBottom sx={{
+          fontWeight: 800,
+          fontSize: { xs: '2rem', md: '3.5rem' },
+          color: '#2e7d32',
+          fontFamily: 'Poppins',
+          mb: { xs: 4, md: 8 },
+          position: 'relative',
+          '&::after': {
+            content: '""',
+            position: 'absolute',
+            bottom: '-10px',
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '80px',
+            height: '4px',
+            backgroundColor: '#2e7d32',
+            borderRadius: '2px'
+          },
+          textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
+        }}>
+          Get In Touch With Us
+        </Typography>
+        <div className="flex flex-col md:flex-row gap-6">
           {/* Contact Information */}
           <div className="w-full md:w-5/12">
-            <Paper elevation={0} sx={{ p: 4, height: '100%', bgcolor: 'transparent' }}>
-              <Typography variant="h4" component="h2" gutterBottom fontWeight="bold" sx={{ color: '#2e7d32', fontFamily: 'Poppins' }}>
+            <Paper elevation={0} sx={{ 
+              p: { xs: 3, md: 4 }, 
+              height: '100%', 
+              bgcolor: 'transparent' 
+            }}>
+              <Typography variant="h4" component="h2" gutterBottom fontWeight="bold" 
+                sx={{ 
+                  color: '#2e7d32', 
+                  fontFamily: 'Poppins',
+                  fontSize: { xs: '1.5rem', md: '2rem' }
+                }}>
                 Get in Touch
               </Typography>
               <Typography variant="body1" sx={{ color: '#1b5e20', fontFamily: 'Poppins' }} paragraph>
@@ -130,9 +161,9 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div className="w-full md:w-7/12">
-            <Paper elevation={3} sx={{ p: 4, bgcolor: 'white' }}>
+            <Paper elevation={3} sx={{ p: { xs: 3, md: 4 }, bgcolor: 'white' }}>
               <form onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="sm:col-span-1">
                     <TextField
                       fullWidth
@@ -194,10 +225,12 @@ const Contact = () => {
                       type="submit"
                       variant="contained"
                       size="large"
+                      fullWidth
                       disabled={loading}
                       endIcon={loading ? <CircularProgress size={20} /> : <SendIcon />}
                       sx={{
                         bgcolor: '#2e7d32',
+                        py: { xs: 1.5, md: 2 },
                         '&:hover': {
                           bgcolor: '#1b5e20'
                         }

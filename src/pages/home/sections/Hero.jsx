@@ -9,7 +9,7 @@ import mushroom4 from '../../../../public/images/mushroom (4).jpg'
  
 
 const Hero = () => {
-  console.log('Image imports:', { mushroom1, mushroom2, mushroom3, mushroom4 });
+  // console.log('Image imports:', { mushroom1, mushroom2, mushroom3, mushroom4 });
 
   const settings = {
     dots: true,
@@ -51,12 +51,12 @@ const Hero = () => {
   ];
 
   return (
-    <div className="relative h-[80vh] overflow-hidden border-b-2">
+    <div className="relative h-[50vh] md:h-[80vh] overflow-hidden border-b-2">
       <Slider {...settings} className="h-full">
         {slides.map((slide, index) => (
           <div 
             key={index} 
-            className="relative h-[80vh]"
+            className="relative h-[50vh] md:h-[80vh]"
             role="tabpanel"
             aria-roledescription="slide"
             aria-label={`Slide ${index + 1} of ${slides.length}`}
@@ -67,8 +67,8 @@ const Hero = () => {
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white">
-              <h1 className="text-5xl font-bold mb-4">{slide.title}</h1>
-              <p className="text-xl">{slide.description}</p>
+              <h1 className="text-3xl md:text-5xl font-bold mb-4">{slide.title}</h1>
+              <p className="text-lg md:text-xl">{slide.description}</p>
             </div>
           </div>
         ))}
