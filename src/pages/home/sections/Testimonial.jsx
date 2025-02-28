@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import test1 from '../../../../public/images/testimonials/test1.jpg'
+import test2 from '../../../../public/images/testimonials/test2.jpg'
+import test3 from '../../../../public/images/testimonials/test3.jpg'
 
 const testimonials = [
   {
     id: 1,
     name: "Sarah Johnson",
     role: "Health Enthusiast",
-    image: "https://randomuser.me/api/portraits/women/1.jpg",
+    image: test2,
     quote: "Since incorporating this product into my daily routine, I've noticed a significant improvement in my energy levels and overall well-being. The natural ingredients make all the difference!",
     benefit: "Increased Energy"
   },
@@ -14,7 +17,7 @@ const testimonials = [
     id: 2,
     name: "Dr. Michael Chen",
     role: "Wellness Practitioner",
-    image: "https://randomuser.me/api/portraits/men/2.jpg",
+    image: test1,
     quote: "As a healthcare professional, I'm impressed by the product's commitment to quality and its positive impact on my patients' immune systems. The results speak for themselves.",
     benefit: "Immune Support"
   },
@@ -22,7 +25,7 @@ const testimonials = [
     id: 3,
     name: "Emma Rodriguez",
     role: "Fitness Trainer",
-    image: "https://randomuser.me/api/portraits/women/3.jpg",
+    image: test3,
     quote: "My clients have reported better recovery times and improved stamina during workouts. It's become an essential part of their wellness journey.",
     benefit: "Enhanced Recovery"
   }
@@ -33,10 +36,10 @@ const TestimonialCard = ({ testimonial }) => (
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.5 }}
-    className="bg-white rounded-2xl shadow-xl p-8 relative hover:shadow-2xl transition-shadow duration-300"
+    className="bg-gradient-to-b from-white to-gray-50/50 backdrop-blur-sm rounded-2xl shadow-xl p-8 relative hover:shadow-2xl transition-shadow duration-300 border border-gray-100"
   >
     <div className="absolute -top-6 left-1/2 transform -translate-x-1/2 z-10">
-      <div className="w-12 h-12 rounded-full border-4 border-white shadow-lg overflow-hidden">
+      <div className="w-14 h-14 rounded-full border-4 border-white shadow-lg overflow-hidden">
         <img
           src={testimonial.image}
           alt={testimonial.name}
@@ -45,19 +48,19 @@ const TestimonialCard = ({ testimonial }) => (
       </div>
     </div>
 
-    <div className="mt-8 text-center">
+    <div className="mt-10 text-center">
       <div className="mb-4">
         <h3 className="text-xl font-semibold text-gray-800">{testimonial.name}</h3>
-        <p className="text-primary font-medium">{testimonial.role}</p>
+        <p className="text-secondary font-medium">{testimonial.role}</p>
       </div>
 
       <div className="mb-6">
-        <span className="inline-block px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium">
+        <span className="inline-block px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-medium">
           {testimonial.benefit}
         </span>
       </div>
 
-      <p className="text-gray-600 italic">"{testimonial.quote}"</p>
+      <p className="text-gray-600 italic leading-relaxed">"{testimonial.quote}"</p>
     </div>
   </motion.div>
 );
@@ -102,7 +105,7 @@ const MobileSlideshow = ({ testimonials }) => {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              index === currentIndex ? 'bg-primary w-4' : 'bg-gray-300'
+              index === currentIndex ? 'bg-secondary w-4' : 'bg-gray-300'
             }`}
           />
         ))}
@@ -111,15 +114,15 @@ const MobileSlideshow = ({ testimonials }) => {
       {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="absolute top-1/2 -translate-y-1/2 -left-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-lg"
+        className="absolute top-1/2 -translate-y-1/2 -left-4 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-300 border border-gray-100"
       >
-        <span className="text-primary">←</span>
+        <span className="text-secondary text-lg">←</span>
       </button>
       <button
         onClick={handleNext}
-        className="absolute top-1/2 -translate-y-1/2 -right-4 w-8 h-8 flex items-center justify-center bg-white rounded-full shadow-lg"
+        className="absolute top-1/2 -translate-y-1/2 -right-4 w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-lg hover:bg-gray-50 transition-colors duration-300 border border-gray-100"
       >
-        <span className="text-primary">→</span>
+        <span className="text-secondary text-lg">→</span>
       </button>
     </div>
   );
@@ -127,20 +130,20 @@ const MobileSlideshow = ({ testimonials }) => {
 
 const Testimonial = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-white via-primary/5 to-white">
+    <section className="py-20 bg-gradient-to-b from-white via-secondary/10 to-white relative">
       {/* Background Decorations */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-1/4 left-0 w-72 h-72 bg-primary/5 rounded-full mix-blend-multiply blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-72 h-72 bg-secondary/5 rounded-full mix-blend-multiply blur-3xl"></div>
+        <div className="absolute top-1/4 left-0 w-96 h-96 bg-primary/10 rounded-full mix-blend-multiply blur-3xl animate-blob opacity-70"></div>
+        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-secondary/10 rounded-full mix-blend-multiply blur-3xl animate-blob animation-delay-2000 opacity-70"></div>
       </div>
 
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 relative">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
-            Health Benefits That <span className="text-primary">Matter</span>
+            Health Benefits That <span className="text-secondary">Matter</span>
           </h2>
-          <div className="w-20 h-1 bg-primary/80 mx-auto mb-6"></div>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <div className="w-20 h-1 bg-secondary mx-auto mb-6"></div>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto leading-relaxed">
             Discover how our product has transformed the lives of our customers, promoting better health and wellness naturally.
           </p>
         </div>
@@ -165,7 +168,7 @@ const Testimonial = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center mt-16"
         >
-          <button className="bg-primary text-white px-8 py-3 rounded-full font-medium hover:bg-primary/90 transition-colors duration-300 shadow-lg hover:shadow-xl">
+          <button className="bg-secondary text-white px-8 py-3 rounded-full font-medium hover:bg-secondary/90 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
             Experience the Benefits
           </button>
         </motion.div>
