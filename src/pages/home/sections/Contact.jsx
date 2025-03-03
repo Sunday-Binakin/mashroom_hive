@@ -129,7 +129,7 @@ const Contact = () => {
                         '&:hover': { color: '#2e7d32' }
                       }}
                     >
-                      your.email@example.com
+                      themushroomhive@gmail.com
                     </Typography>
                   </ListItemText>
                 </ListItem>
@@ -140,7 +140,7 @@ const Contact = () => {
                   </ListItemIcon>
                   <ListItemText>
                     <Typography color="text.primary">
-                      (123) 456-7890
+                      (233) 240 800951 
                     </Typography>
                   </ListItemText>
                 </ListItem>

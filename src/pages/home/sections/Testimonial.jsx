@@ -7,26 +7,26 @@ import test3 from '../../../../public/images/testimonials/test3.jpg'
 const testimonials = [
   {
     id: 1,
-    name: "Sarah Johnson",
-    role: "Health Enthusiast",
+    name: "Akua Mensah",
+    role: "Blue-Collar Worker",
     image: test2,
-    quote: "Since incorporating this product into my daily routine, I've noticed a significant improvement in my energy levels and overall well-being. The natural ingredients make all the difference!",
+    quote: "This product has been a game-changer for my health. It's like finding a rare, nutrient-rich mushroom in the forest - it's a treasure that nourishes my body and mind!",
     benefit: "Increased Energy"
   },
   {
     id: 2,
-    name: "Dr. Michael Chen",
-    role: "Wellness Practitioner",
+    name: "Dr. Kwame Owusu",
+    role: "Construction Engineer",
     image: test1,
-    quote: "As a healthcare professional, I'm impressed by the product's commitment to quality and its positive impact on my patients' immune systems. The results speak for themselves.",
+    quote: "The quality of this product is reminiscent of the finest, most potent mushrooms. It's a testament to the power of nature in promoting immune system balance.",
     benefit: "Immune Support"
   },
   {
     id: 3,
-    name: "Emma Rodriguez",
-    role: "Fitness Trainer",
+    name: "Nana Ama Boateng",
+    role: "Fisherman",
     image: test3,
-    quote: "My clients have reported better recovery times and improved stamina during workouts. It's become an essential part of their wellness journey.",
+    quote: "Incorporating this product into my daily routine has been like adding a boost of mushroom-based energy to my fishing trips. I'm performing better and recovering faster!",
     benefit: "Enhanced Recovery"
   }
 ];
@@ -168,7 +168,7 @@ const Testimonial = () => {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-center mt-16"
         >
-          <button className="bg-secondary text-white px-8 py-3 rounded-full font-medium hover:bg-secondary/90 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+          <button className="bg-secondary text-black px-8 py-3 rounded-full font-medium hover:bg-secondary/90 transition-colors duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
             Experience the Benefits
           </button>
         </motion.div>

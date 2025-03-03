@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import product1 from '../../../../public/images/product_images/A0004.jpg'
 import product2 from '../../../../public/images/product_images/A0005.jpg'
 import product3 from '../../../../public/images/product_images/A0006.jpg'
@@ -21,91 +22,104 @@ const Showcase = () => {
       name: "Shiitake Mushroom",
       image:product1, 
       description: "Rich umami flavor, perfect for Asian cuisine",
-      price: "GH₵8.99"
+      price: "GH₵8.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 2,
       name: "Oyster Mushroom",
       image: product2,
       description: "Delicate texture with mild seafood-like flavor",
-      price: "GH₵7.99"
+      price: "GH₵7.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 3,
       name: "King Trumpet",
       image: product3,
       description: "Meaty texture with subtle pine notes",
-      price: "GH₵9.99"
+      price: "GH₵9.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 4,
       name: "Lion's Mane",
       image: product4, 
       description: "Unique texture, known for cognitive benefits",
-      price: "GH₵12.99"
+      price: "GH₵12.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 5,
       name: "Reishi",
       image: product5,
       description: "Traditional medicinal mushroom for wellness",
-      price: "GH₵14.99"
+      price: "GH₵14.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 6,
       name: "Maitake",
       image: product6,
       description: "Rich, woodsy flavor with immune benefits",
-      price: "GH₵11.99"
+      price: "GH₵11.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 7,
       name: "Enoki",
       image: product7,
       description: "Delicate, crispy texture perfect for soups",
-      price: "GH₵6.99"
+      price: "GH₵6.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 8,
       name: "Cordyceps",
       image: product8,
       description: "Energy-boosting medicinal mushroom",
-      price: "GH₵15.99"
+      price: "GH₵15.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 9,
       name: "Chaga",
       image: product9,
       description: "Powerful antioxidant properties",
-      price: "GH₵13.99"
+      price: "GH₵13.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 10,
       name: "Turkey Tail",
       image: product10,
       description: "Beautiful pattern, immune system support",
-      price: "GH₵10.99"
+      price: "GH₵10.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 11,
       name: "Wood Ear",
       image: product11,
       description: "Crunchy texture, great in Asian dishes",
-      price: "GH₵8.99"
+      price: "GH₵8.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 12,
       name: "Porcini",
       image: product12, 
       description: "Rich, nutty flavor perfect for Italian cuisine",
-      price: "GH₵16.99"
+      price: "GH₵16.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     },
     {
       id: 13,
       name: "King Trumpet",
       image: product13,
       description: "Meaty texture with mild seafood notes",
-      price: "GH₵13.99"
+      price: "GH₵13.99",
+      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
     }
   ];
 
@@ -140,7 +154,12 @@ const Showcase = () => {
                 key={mushroom.id}
                 className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4"
               >
-                <div className="bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105">
+                <Link 
+                  to={mushroom.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105"
+                >
                   <div className="h-48 overflow-hidden">
                     <img
                       src={mushroom.image}
@@ -153,7 +172,7 @@ const Showcase = () => {
                     <p className="text-gray-600 mb-4">{mushroom.description}</p>
                     <p className="text-lg font-bold text-green-600">{mushroom.price}</p>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

@@ -5,6 +5,8 @@ import logo from '../../public/images/logo.png'
 import { FaInstagram } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
 import { FaFacebookF } from "react-icons/fa";
+import { Email } from "@mui/icons-material";
+import { Phone } from "@mui/icons-material";
 
 const Footer = () => {
   return (
@@ -37,7 +39,7 @@ const Footer = () => {
               <span className="absolute bottom-0 left-0 w-1/2 h-0.5 bg-emerald-500 transform origin-left transition-all duration-300 group-hover:w-full"></span>
             </h3>
             <nav className="flex flex-col space-y-3 sm:space-y-4">
-              {['Home', 'About', 'Company', 'Services', 'Contact'].map((item) => (
+              {['Home', 'About', 'Product', 'Testimonials', 'Contact Us','Shop'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -62,16 +64,18 @@ const Footer = () => {
             {/* Social Icons */}
             <div className="flex justify-center items-center space-x-2 sm:space-x-6">
               {[
-                { Icon: FaFacebookF, color: "hover:bg-blue-600" },
-                { Icon: FaInstagram, color: "hover:bg-pink-600" },
-                { Icon: FaWhatsapp, color: "hover:bg-green-600" }
-              ].map(({ Icon, color }) => (
+                { Icon: FaFacebookF, color: "hover:bg-blue-600", link: "https://www.facebook.com/themushroomhive?mibextid=ZbWKwL" },
+                { Icon: FaInstagram, color: "hover:bg-pink-600", link: "https://www.instagram.com/the_mushroomhive?igsh=MW82cGZmY2xydHgwdw==" },
+                { Icon: FaWhatsapp, color: "hover:bg-green-600", link: "https://wa.me/+233240800951" }
+              ].map(({ Icon, color, link }) => (
                 <a
                   key={color}
-                  href="#"
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`p-2 sm:p-3 rounded-full bg-white shadow-lg transform hover:-translate-y-2 transition-all duration-500 ${color} hover:text-white group`}
                 >
-                  <Icon size={16} className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-10 lg:size-22" />
+                  <Icon size={16} className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-20 lg:size-22" />
                 </a>
               ))}
             </div>
@@ -84,7 +88,13 @@ const Footer = () => {
                 className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
               >
                 <span className="relative">
-                  info@gmail.com
+                  <Email size={16} className="mr-2 transform transition-transform group-hover:rotate-12 sm:size-20 md:size-20 lg:size-22" />
+                  <a
+                    href="mailto:themushroomhive@gmail.com"
+                    className="text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
+                  >
+                    themushroomhive@gmail.com
+                  </a>
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </a>
@@ -92,8 +102,10 @@ const Footer = () => {
                 href="tel:+233000000000"
                 className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
               >
+                <Phone className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-20 lg:size-22"/>
                 <span className="relative">
-                  +233 000 000 000
+                  +233240800951 / +233501425027
+
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </a>
