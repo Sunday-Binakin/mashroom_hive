@@ -10,25 +10,30 @@ const Navbar = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLinkClick = (e, sectionId) => {
-    e.preventDefault();
+  const handleLinkClick = (e) => {
     // Close mobile menu when a link is clicked
     setIsOpen(false);
+
+    // Get the href value
+    const href = e.currentTarget.getAttribute('href');
     
-    // Smooth scroll to section
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    // If it's an anchor link (starts with #)
+    if (href?.startsWith('#')) {
+      e.preventDefault();
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
   // Navigation items array
   const navItems = [
-    { name: 'Home', sectionId: 'home' },
-    { name: 'About', sectionId: 'about' },
-    { name: 'Product', sectionId: 'product' },
-    { name: 'Testimonials', sectionId: 'testimonials' },
-    { name: 'Contact Us', sectionId: 'contact-us' }
+    { name: 'Home', path: '/' },
+    { name: 'About', path: '/about' },
+    { name: 'Product', path: '/product' },
+    { name: 'Testimonials', path: '/testimonials' },
+    { name: 'Contact Us', path: '/contact-us' }
   ];
 
   return (
@@ -47,15 +52,15 @@ const Navbar = () => {
           {/* Navbar Items - Visible on medium and large screens */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={`#${item.sectionId}`}
-                onClick={(e) => handleLinkClick(e, item.sectionId)}
+                to={item.path}
+                onClick={handleLinkClick}
                 className="text-lg font-medium text-gray-700 hover:text-[#1B5E20] hover:scale-110 relative group transition-all duration-300 ease-in-out"
               >
                 {item.name}
                 <span className="absolute inset-x-0 bottom-0 h-0.5 hover:text-[#1B5E20] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out"></span>
-              </a>
+              </Link>
             ))}
             <Link
               to="https://paystack.shop/themushroomhive"

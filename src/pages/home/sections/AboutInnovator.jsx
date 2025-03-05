@@ -85,7 +85,7 @@ const AboutInnovator = () => {
 
             {/* Optional: Add social links or contact information */}
             <div className="flex gap-4 justify-center items-center">
-              <button className="px-6 py-2 border-2 border-primary text-primary font-semibold rounded-full shadow-md hover:bg-green-500 hover:text-white hover:border-green-500 hover:shadow-lg transition-all duration-300 ease-in-out">
+              <button className="px-6 py-2  border-primary text-primary font-semibold rounded-full shadow-md hover:bg-green-500 hover:text-white hover:border-green-500 hover:shadow-lg transition-all duration-300 ease-in-out">
                 Contact
               </button>
               <button className="px-6 py-2 bg-primary text-primary font-semibold rounded-full shadow-md hover:bg-green-500 hover:shadow-lg transition-all duration-300 ease-in-out">
