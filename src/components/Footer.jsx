@@ -75,7 +75,8 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className={`p-2 sm:p-3 rounded-full bg-white shadow-lg transform hover:-translate-y-2 transition-all duration-500 ${color} hover:text-white group`}
                 >
-                  <Icon size={16} className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-20 lg:size-22" />
+                  {/* <Icon size={16}   /> */}
+                  <Icon   className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-[5rem] lg:size-22" />
                 </a>
               ))}
             </div>
