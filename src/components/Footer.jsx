@@ -75,41 +75,44 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   className={`p-2 sm:p-3 rounded-full bg-white shadow-lg transform hover:-translate-y-2 transition-all duration-500 ${color} hover:text-white group`}
                 >
-                  {/* <Icon size={16}   /> */}
-                  <Icon   className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-[5rem] lg:size-22" />
+                  <Icon className="w-4 h-4 sm:w-6 sm:h-6 md:w-8 md:h-8 transform transition-transform group-hover:rotate-12" />
                 </a>
               ))}
             </div>
 
-
             {/* Contact Info */}
             <div className="space-y-3 sm:space-y-4">
-              <a
-                href="mailto:info@gmail.com"
-                className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
-              >
-                <span className="relative">
-                  <Email size={16} className="mr-2 transform transition-transform group-hover:rotate-12 sm:size-20 md:size-20 lg:size-22" />
-                  <a
-                    href="mailto:themushroomhive@gmail.com"
-                    className="text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
-                  >
+              <div className="flex flex-col space-y-2">
+                <a
+                  href="mailto:themushroomhive@gmail.com"
+                  className="flex items-center space-x-4 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group"
+                >
+                  <Email className="w-5 h-5 transform transition-transform group-hover:rotate-12" />
+                  <span className="text-sm break-all">
                     themushroomhive@gmail.com
-                  </a>
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-                </span>
-              </a>
-              <a
-                href="tel:+233000000000"
-                className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group text-base sm:text-lg font-['Poppins']"
-              >
-                <Phone className="transform transition-transform group-hover:rotate-12 sm:size-20 md:size-20 lg:size-22"/>
-                <span className="relative">
-                  +233240800951 / +233501425027
-
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"></span>
-                </span>
-              </a>
+                  </span>
+                </a>
+              </div>
+              
+              <div className="flex flex-col space-y-2">
+                <a
+                  href="tel:+233240800951"
+                  className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group"
+                >
+                  <Phone className="w-5 h-5 transform transition-transform group-hover:rotate-12"/>
+                  <span className="text-sm">
+                    +233 240 800 951
+                  </span>
+                </a>
+                <a
+                  href="tel:+233501425027"
+                  className="flex items-center space-x-2 text-gray-600 hover:text-emerald-600 transition-colors duration-300 group pl-7"
+                >
+                  <span className="text-sm">
+                    +233 501 425 027
+                  </span>
+                </a>
+              </div>
             </div>
           </div>
         </div>

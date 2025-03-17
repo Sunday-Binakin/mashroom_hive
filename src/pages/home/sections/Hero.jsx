@@ -6,6 +6,10 @@ import mushroom1 from '../../../../public/images/mushroom (1).jpg'
 import mushroom2 from '../../../../public/images/mushroom (2).jpg'
 import mushroom3 from '../../../../public/images/mushroom (3).jpg'
 import mushroom4 from '../../../../public/images/mushroom (4).jpg'
+import mushroom5 from '../../../../public/images/mushroom 5.jpg'
+import mushroom6 from '../../../../public/images/mushroom 6.jpg'
+import mushroom7 from '../../../../public/images/mushroom 7.jpg'
+import mushroom8 from '../../../../public/images/mushroom 8.jpg'
  
 
 const Hero = () => {
@@ -29,29 +33,37 @@ const Hero = () => {
 
   const slides = [
     {
-      image: mushroom1,
+      image: mushroom8,
       title: "Fresh Organic Mushrooms",
       description: "Locally sourced and naturally grown",
     },
     {
-      image: mushroom2,
+      image: mushroom5,
       title: "Premium Quality",
       description: "Hand-picked for the best flavor",
     },
     {
-      image: mushroom3,
+      image: mushroom6,
       title: "Sustainable Farming",
       description: "Environmentally conscious cultivation",
     },
     {
-      image: mushroom4,
+      image: mushroom7,
       title: "Farm to Table",
       description: "Direct from our farms to your plate",
     },
   ];
 
+  const handleLinkClick = (e, sectionId) => {
+    e.preventDefault();
+    const element = document.querySelector(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
-    <div className="relative h-[50vh] md:h-[80vh] overflow-hidden">
+    <div className="relative h-[50vh] md:h-[80vh] overflow-hidden bg-[#f5fff5]">
       <Slider {...settings} className="h-full">
         {slides.map((slide, index) => (
           <div 
@@ -66,9 +78,21 @@ const Hero = () => {
               alt={slide.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-opacity-40 flex flex-col justify-center items-center text-white">
-              <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[#E17100]">{slide.title}</h1>
-              <p className="text-lg md:text-xl text-[#E17100]">{slide.description}</p>
+            <div className="absolute inset-0   bg-opacity-5 flex flex-col justify-center items-center">
+              <h1 className="text-3xl md:text-5xl font-bold mb-4 text-[#f5fff5] drop-shadow-lg">
+                {slide.title}
+              </h1>
+              <p className="text-lg md:text-xl text-[#f5fff5] mb-6 drop-shadow-lg">
+                {slide.description}
+              </p>
+              <a
+                href="#product"
+                onClick={(e) => handleLinkClick(e, "#product")}
+                className="bg-[#2e7d32] hover:bg-[#1b5e20] text-white px-8 py-3 rounded-full text-lg font-semibold transition-all duration-300 transform hover:scale-105"
+                aria-label="Shop Now - Go to products section"
+              >
+                Products
+              </a>
             </div>
           </div>
         ))}

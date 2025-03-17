@@ -17,9 +17,9 @@ const Home = () => {
     >
       <Hero />
       <AboutProduct />
-      <AboutInnovator />
       <Showcase />
-      <Testimonial/>
+      <AboutInnovator />
+      <Testimonial />
       <Contact />
     </motion.div>
   );

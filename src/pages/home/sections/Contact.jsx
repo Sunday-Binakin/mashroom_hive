@@ -70,7 +70,7 @@ const Contact = () => {
   };
 
   return (
-    <Box sx={{ py: { xs: 4, md: 8 }, bgcolor: '#f5fff5' }}>
+    <Box id="contact" sx={{ py: { xs: 4, md: 8 }, bgcolor: '#f5fff5' }}>
       <Container maxWidth="lg">
         <Typography variant="h2" component="h1" align="center" gutterBottom sx={{
           fontWeight: 800,

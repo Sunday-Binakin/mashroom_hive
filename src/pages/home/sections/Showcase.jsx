@@ -139,7 +139,7 @@ const Showcase = () => {
   }, [isPaused]);
 
   return (
-    <div className="py-12 px-6 bg-gray-50 border-b-2">
+    <div id="product" className="py-12 px-6 bg-gray-50 products">
       <h2 className="text-5xl font-bold text-center mb-12 text-green-600">Explore Our Mushroom Delights</h2>
       <div className="max-w-7xl mx-auto relative">
         <div className="overflow-hidden"
