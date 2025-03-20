@@ -1,22 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination, Navigation } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import firstMushroom from "../../../../public/images/mushroom_1.jpg"
-import secondMushroom from "../../../../public/images/mushroom_2.jpg"
-import thirdMushroom from "../../../../public/images/mushroom (1).jpg"
-import fourthMushroom from "../../../../public/images/mushroom (3).jpg"
-import fifthMushroom from "../../../../public/images/mushroom (4).jpg"
-import sixthMushroom from "../../../../public/images/mushroom (5).jpg"
-import seventhMushroom from "../../../../public/images/mushroom_7.jpg"
+import firstMushroom from "../../../../public/images/mushroom_1.jpg";
+import secondMushroom from "../../../../public/images/mushroom_2.jpg";
+import thirdMushroom from "../../../../public/images/mushroom (1).jpg";
+import fourthMushroom from "../../../../public/images/mushroom (3).jpg";
+import fifthMushroom from "../../../../public/images/mushroom (4).jpg";
+import sixthMushroom from "../../../../public/images/mushroom (5).jpg";
+import seventhMushroom from "../../../../public/images/mushroom_7.jpg";
 import Showcase from "./Showcase";
 
 const AboutProduct = () => {
   const [activeCategory, setActiveCategory] = useState('all');
-  
+  const [currentProductIndex, setCurrentProductIndex] = useState(0);
+  const [currentFeatureIndex, setCurrentFeatureIndex] = useState(0);
+
   const products = [
     {
       title: "Lion's Mane",
@@ -69,63 +66,38 @@ const AboutProduct = () => {
     { title: "Premium", desc: "Highest quality standards" }
   ];
 
-  const galleryImages = [
-    {
-      src: firstMushroom,
-      alt: "Fresh mushrooms",
-      className: "col-span-1 row-span-2"
-    },
-    {
-      src: secondMushroom,
-      alt: "Mushroom variety",
-      className: "col-span-1 row-span-1"
-    },
-    {
-      src: thirdMushroom,
-      alt: "Organic mushrooms",
-      className: "col-span-1 row-span-1"
-    },
-    {
-      src: fourthMushroom,
-      alt: "Premium selection",
-      className: "col-span-1 row-span-2"
-    },
-    {
-      src: fifthMushroom,
-      alt: "Gourmet mushrooms",
-      className: "col-span-1 row-span-1"
-    },
-    {
-      src: sixthMushroom,
-      alt: "Medicinal mushrooms",
-      className: "col-span-1 row-span-1"
-    },
-    {
-      src: seventhMushroom,
-      alt: "Gourmet mushrooms",
-      className: "col-span-1 row-span-1"
-    }
-  ];
+  const filteredProducts = products.filter(
+    product => activeCategory === 'all' || product.category === activeCategory
+  );
 
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 20,
-      scale: 0.95
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
+  // Automatic sliding for products (every 3 seconds)
+  useEffect(() => {
+    const productInterval = setInterval(() => {
+      setCurrentProductIndex((prevIndex) => 
+        (prevIndex + 1) % filteredProducts.length
+      );
+    }, 3000); // 3 seconds
+    return () => clearInterval(productInterval); // Cleanup on unmount
+  }, [filteredProducts.length]);
+
+  // Automatic sliding for features (every 4 seconds)
+  useEffect(() => {
+    const featureInterval = setInterval(() => {
+      setCurrentFeatureIndex((prevIndex) => 
+        (prevIndex + 1) % features.length
+      );
+    }, 4000); // 4 seconds
+    return () => clearInterval(featureInterval); // Cleanup on unmount
+  }, [features.length]);
+
+  const slideVariants = {
+    enter: { opacity: 0, x: 100 },
+    center: { opacity: 1, x: 0 },
+    exit: { opacity: 0, x: -100 }
   };
 
   return (
-    <div id="about" className="min-h-screen bg-[#f5fff5] text-[#1b5e20] py-20">
+    <div id="about" className="min-h-screen bg-gradient-to-b from-[#f5fff5] to-[#e6f7e6] text-[#1b5e20] py-20">
       <div className="max-w-7xl mx-auto px-4">
         {/* Hero Section */}
         <motion.div 
@@ -136,7 +108,7 @@ const AboutProduct = () => {
           <motion.h1 
             initial={{ y: 50 }}
             animate={{ y: 0 }}
-            className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-[#2e7d32] via-[#1b5e20] to-[#2e7d32] bg-clip-text text-transparent"
+            className="text-6xl md:text-8xl font-bold bg-gradient-to-r from-[#2e7d32] via-[#1b5e20] to-[#2e7d32] bg-clip-text text-transparent drop-shadow-sm"
           >
             Mushroom Magic
           </motion.h1>
@@ -155,113 +127,110 @@ const AboutProduct = () => {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-6 py-2 rounded-full text-sm uppercase tracking-wider transition-all
+              className={`px-6 py-2 rounded-full text-sm uppercase tracking-wider transition-all shadow-sm
                 ${activeCategory === category 
-                  ? 'bg-[#2e7d32] text-white' 
-                  : 'bg-transparent border border-[#2e7d32]/30 text-[#2e7d32]/70 hover:border-[#2e7d32]'}`}
+                  ? 'bg-[#2e7d32] text-white font-medium shadow-md' 
+                  : 'bg-white/80 border border-[#2e7d32]/30 text-[#2e7d32] hover:border-[#2e7d32] hover:bg-white'}`}
             >
               {category}
             </button>
           ))}
         </div>
 
-        {/* Products Grid - Modified for mobile slider */}
+        {/* Products Grid - Desktop */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products
-            .filter(product => activeCategory === 'all' || product.category === activeCategory)
-            .map((product, index) => (
+          {filteredProducts.map((product, index) => (
+            <motion.div
+              key={product.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className="group relative overflow-hidden rounded-3xl bg-white shadow-lg"
+            >
+              <div className="aspect-square overflow-hidden">
+                <img 
+                  src={product.image} 
+                  alt={product.title}
+                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-70"/>
+              <div className="absolute bottom-0 p-6 space-y-4 w-full">
+                <div className="flex justify-between items-center">
+                  <span className="px-3 py-1 rounded-full text-xs bg-white/90 text-[#1b5e20] font-medium uppercase tracking-wide">
+                    {product.category}
+                  </span>
+                </div>
+                <h3 className="text-2xl font-bold text-white drop-shadow-sm">{product.title}</h3>
+                <p className="text-white/90 drop-shadow-sm">{product.description}</p>
+                <ul className="space-y-2 bg-black/30 p-3 rounded-xl backdrop-blur-sm">
+                  {product.benefits.map((benefit, i) => (
+                    <li key={i} className="flex items-center gap-2 text-sm text-white">
+                      <span className="text-[#4caf50] drop-shadow-sm">●</span>
+                      {benefit}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Mobile Products Slider with AnimatePresence */}
+        <div className="md:hidden">
+          <div className="relative overflow-hidden">
+            <AnimatePresence initial={false}>
               <motion.div
-                key={product.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative overflow-hidden rounded-3xl bg-gradient-to-b from-[#2e7d32]/10 to-[#1b5e20]/20 backdrop-blur-sm"
+                key={currentProductIndex}
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="group relative overflow-hidden rounded-3xl bg-white shadow-lg"
               >
                 <div className="aspect-square overflow-hidden">
                   <img 
-                    src={product.image} 
-                    alt={product.title}
+                    src={filteredProducts[currentProductIndex].image} 
+                    alt={filteredProducts[currentProductIndex].title}
                     className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
                   />
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-[#1b5e20] via-[#1b5e20]/50 to-transparent opacity-60"/>
-                <div className="absolute bottom-0 p-6 space-y-4">
-                  <span className="px-3 py-1 rounded-full text-xs bg-[#2e7d32]/20 text-[#2e7d32]">
-                    {product.category}
-                  </span>
-                  <h3 className="text-2xl font-bold text-white">{product.title}</h3>
-                  <p className="text-white/80">{product.description}</p>
-                  <ul className="space-y-2">
-                    {product.benefits.map((benefit, i) => (
-                      <li key={i} className="flex items-center gap-2 text-sm text-white/60">
-                        <span className="text-[#2e7d32]">✦</span>
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-transparent opacity-70"/>
+                <div className="absolute bottom-0 p-6 space-y-4 w-full">
+                  <div className="flex justify-between items-center">
+                    <span className="px-3 py-1 rounded-full text-xs bg-white/90 text-[#1b5e20] font-medium uppercase tracking-wide">
+                      {filteredProducts[currentProductIndex].category}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl font-bold text-white drop-shadow-sm">
+                    {filteredProducts[currentProductIndex].title}
+                  </h3>
+                  <p className="text-white/90 drop-shadow-sm">
+                    {filteredProducts[currentProductIndex].description}
+                  </p>
+                  <ul className="space-y-2 bg-black/30 p-3 rounded-xl backdrop-blur-sm">
+                    {filteredProducts[currentProductIndex].benefits.map((benefit, i) => (
+                      <li key={i} className="flex items-center gap-2 text-sm text-white">
+                        <span className="text-[#4caf50] drop-shadow-sm">●</span>
                         {benefit}
                       </li>
                     ))}
                   </ul>
                 </div>
               </motion.div>
-            ))}
+            </AnimatePresence>
+          </div>
         </div>
 
-        {/* Mobile Products Slider */}
-        <div className="md:hidden">
-          <Swiper
-            modules={[Pagination, Navigation]}
-            spaceBetween={20}
-            slidesPerView={1}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
-            pagination={{ clickable: true }}
-            navigation
-            className="w-full"
-          >
-            {products
-              .filter(product => activeCategory === 'all' || product.category === activeCategory)
-              .map((product, index) => (
-                <SwiperSlide key={product.title}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="group relative overflow-hidden rounded-3xl bg-gradient-to-b from-[#2e7d32]/10 to-[#1b5e20]/20 backdrop-blur-sm"
-                  >
-                    <div className="aspect-square overflow-hidden">
-                      <img 
-                        src={product.image} 
-                        alt={product.title}
-                        className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
-                      />
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1b5e20] via-[#1b5e20]/50 to-transparent opacity-60"/>
-                    <div className="absolute bottom-0 p-6 space-y-4">
-                      <span className="px-3 py-1 rounded-full text-xs bg-[#2e7d32]/20 text-[#2e7d32]">
-                        {product.category}
-                      </span>
-                      <h3 className="text-2xl font-bold text-white">{product.title}</h3>
-                      <p className="text-white/80">{product.description}</p>
-                      <ul className="space-y-2">
-                        {product.benefits.map((benefit, i) => (
-                          <li key={i} className="flex items-center gap-2 text-sm text-white/60">
-                            <span className="text-[#2e7d32]">✦</span>
-                            {benefit}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-          </Swiper>
-        </div>
-
-        {/* Features Section - Modified for mobile slider */}
+        {/* Features Section */}
         <div className="mt-32">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-[#2e7d32] mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#2e7d32] mb-4 drop-shadow-sm">
               Our Quality Promise
             </h2>
             <p className="text-xl text-[#1b5e20]/80 max-w-2xl mx-auto">
@@ -277,47 +246,61 @@ const AboutProduct = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="p-6 rounded-2xl bg-gradient-to-b from-[#2e7d32]/10 to-[#1b5e20]/20 border border-[#2e7d32]/10 hover:border-[#2e7d32]/30 transition-all"
+                className="p-8 rounded-2xl bg-white border border-[#2e7d32]/10 hover:border-[#2e7d32]/30 transition-all shadow-md hover:shadow-lg group"
               >
-                <div className="w-12 h-12 mb-4 rounded-full bg-[#2e7d32]/10 flex items-center justify-center">
-                  <span className="text-[#2e7d32]">✦</span>
+                <div className="w-16 h-16 mb-6 rounded-full bg-[#2e7d32]/10 flex items-center justify-center group-hover:bg-[#2e7d32]/20 transition-all">
+                  <span className="text-2xl text-[#2e7d32]">✦</span>
                 </div>
-                <h3 className="text-xl font-semibold text-[#2e7d32] mb-2">{feature.title}</h3>
+                <h3 className="text-2xl font-semibold text-[#2e7d32] mb-3">{feature.title}</h3>
                 <p className="text-[#1b5e20]/80">{feature.desc}</p>
               </motion.div>
             ))}
           </div>
 
-          {/* Mobile Features Slider */}
+          {/* Mobile Features Slider with AnimatePresence */}
           <div className="md:hidden">
-            <Swiper
-              modules={[Pagination, Navigation]}
-              spaceBetween={20}
-              slidesPerView={1}
-              autoplay={{ delay: 3000, disableOnInteraction: false }}
-              pagination={{ clickable: true }}
-              navigation
-              className="w-full"
-            >
-              {features.map((feature, index) => (
-                <SwiperSlide key={feature.title}>
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="p-6 rounded-2xl bg-gradient-to-b from-[#2e7d32]/10 to-[#1b5e20]/20 border border-[#2e7d32]/10 hover:border-[#2e7d32]/30 transition-all"
-                  >
-                    <div className="w-12 h-12 mb-4 rounded-full bg-[#2e7d32]/10 flex items-center justify-center">
-                      <span className="text-[#2e7d32]">✦</span>
-                    </div>
-                    <h3 className="text-xl font-semibold text-[#2e7d32] mb-2">{feature.title}</h3>
-                    <p className="text-[#1b5e20]/80">{feature.desc}</p>
-                  </motion.div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
+            <div className="relative overflow-hidden">
+              <AnimatePresence initial={false}>
+                <motion.div
+                  key={currentFeatureIndex}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.5, ease: "easeInOut" }}
+                  className="p-8 rounded-2xl bg-white border border-[#2e7d32]/10 transition-all shadow-md group h-64 flex flex-col justify-center"
+                >
+                  <div className="w-16 h-16 mb-6 mx-auto rounded-full bg-[#2e7d32]/10 flex items-center justify-center">
+                    <span className="text-2xl text-[#2e7d32]">✦</span>
+                  </div>
+                  <h3 className="text-2xl font-semibold text-[#2e7d32] mb-3 text-center">
+                    {features[currentFeatureIndex].title}
+                  </h3>
+                  <p className="text-[#1b5e20]/80 text-center">
+                    {features[currentFeatureIndex].desc}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
+        
+        {/* Call to Action Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          className="mt-32 text-center"
+        >
+          <div className="bg-gradient-to-r from-[#1b5e20] to-[#2e7d32] rounded-3xl p-8 md:p-12 shadow-xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Ready to Experience Nature's Bounty?</h2>
+            <p className="text-white/90 text-lg mb-8 max-w-2xl mx-auto">
+              Discover the exceptional quality and benefits of our premium mushroom products
+            </p>
+            <a href="https://paystack.shop/themushroomhive" target="_blank" rel="noopener noreferrer" className="px-8 py-3 bg-white text-[#1b5e20] rounded-full font-medium text-lg shadow-lg hover:shadow-xl transform transition hover:-translate-y-1">
+              Shop Now
+            </a>
+          </div>
+        </motion.div>
       </div>
     </div>
   );

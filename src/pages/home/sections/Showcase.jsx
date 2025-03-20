@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
+
+// Import product images
 import product1 from '../../../../public/images/product_images/A0004.jpg'
 import product2 from '../../../../public/images/product_images/A0005.jpg'
 import product3 from '../../../../public/images/product_images/A0006.jpg'
@@ -13,14 +16,13 @@ import product10 from '../../../../public/images/product_images/A0013.jpg'
 import product11 from '../../../../public/images/product_images/A0014.jpg'
 import product12 from '../../../../public/images/product_images/A0015.jpg'
 import product13 from '../../../../public/images/product_images/A0016.jpg'
- 
 
 const Showcase = () => {
   const mushrooms = [
     {
       id: 1,
       name: "Shiitake Mushroom",
-      image:product1, 
+      image: product1,
       description: "Rich umami flavor, perfect for Asian cuisine",
       price: "GH₵8.99",
       link: "https://paystack.com/buy/mushroom-tea-mjdywc"
@@ -44,7 +46,7 @@ const Showcase = () => {
     {
       id: 4,
       name: "Lion's Mane",
-      image: product4, 
+      image: product4,
       description: "Unique texture, known for cognitive benefits",
       price: "GH₵12.99",
       link: "https://paystack.com/buy/mushroom-tea-mjdywc"
@@ -108,7 +110,7 @@ const Showcase = () => {
     {
       id: 12,
       name: "Porcini",
-      image: product12, 
+      image: product12,
       description: "Rich, nutty flavor perfect for Italian cuisine",
       price: "GH₵16.99",
       link: "https://paystack.com/buy/mushroom-tea-mjdywc"
@@ -123,74 +125,170 @@ const Showcase = () => {
     }
   ];
 
-  const [currentSlide, setCurrentSlide] = React.useState(0);
-  const [isPaused, setIsPaused] = React.useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isHovering, setIsHovering] = useState(null);
+  const sliderRef = useRef(null);
 
-  React.useEffect(() => {
+  const maxSlides = Math.max(0, Math.ceil(mushrooms.length / 4) - 1);
+
+  useEffect(() => {
     const interval = setInterval(() => {
       if (!isPaused) {
-        setCurrentSlide((prev) => 
-          prev === -3 ? 0 : prev - 1
+        setCurrentSlide(prev => 
+          prev >= maxSlides ? 0 : prev + 1
         );
       }
-    }, 3000); // Change slide every 3 seconds
+    }, 5000); // Change slide every 5 seconds
 
     return () => clearInterval(interval);
-  }, [isPaused]);
+  }, [isPaused, maxSlides]);
+
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    const touchDown = e.touches[0].clientX;
+    sliderRef.current = touchDown;
+  };
+
+  const handleTouchMove = (e) => {
+    if (sliderRef.current === null) {
+      return;
+    }
+
+    const currentTouch = e.touches[0].clientX;
+    const diff = sliderRef.current - currentTouch;
+
+    if (diff > 5) { // Swipe left
+      setCurrentSlide(prev => Math.min(maxSlides, prev + 1));
+      sliderRef.current = null;
+    }
+
+    if (diff < -5) { // Swipe right
+      setCurrentSlide(prev => Math.max(0, prev - 1));
+      sliderRef.current = null;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    sliderRef.current = null;
+    setIsPaused(false);
+  };
 
   return (
-    <div id="product" className="py-12 px-6 bg-gray-50 products">
-      <h2 className="text-5xl font-bold text-center mb-12 text-green-600">Explore Our Mushroom Delights</h2>
-      <div className="max-w-7xl mx-auto relative">
-        <div className="overflow-hidden"
-             onMouseEnter={() => setIsPaused(true)}
-             onMouseLeave={() => setIsPaused(false)}>
+    <div id="product" className="py-16 bg-gradient-to-b from-green-50 to-white products">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-green-800">
+            Discover Our <span className="text-green-600">Mushroom</span> Collection
+          </h2>
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+            Explore our premium selection of culinary and medicinal mushrooms, 
+            harvested with care for your health and culinary delight.
+          </p>
+        </div>
+
+        {/* Product Showcase */}
+        <div className="relative">
           <div 
-            className="flex transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(${currentSlide * 25}%)` }}
+            className="overflow-hidden rounded-xl"
+            onMouseEnter={() => setIsPaused(true)}
+            onMouseLeave={() => setIsPaused(false)}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            {mushrooms.map((mushroom) => (
-              <div 
-                key={mushroom.id}
-                className="w-full md:w-1/2 lg:w-1/4 flex-shrink-0 px-4"
-              >
-                <Link 
-                  to={mushroom.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block bg-white rounded-lg shadow-lg overflow-hidden transform transition-transform hover:scale-105"
+            <div 
+              className="flex transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            >
+              {mushrooms.map((mushroom) => (
+                <div 
+                  key={mushroom.id}
+                  className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 flex-shrink-0 p-3"
+                  onMouseEnter={() => setIsHovering(mushroom.id)}
+                  onMouseLeave={() => setIsHovering(null)}
                 >
-                  <div className="h-48 overflow-hidden">
-                    <img
-                      src={mushroom.image}
-                      alt={mushroom.name}
-                      className="w-full h-full object-cover"
-                    />
+                  <div className="relative h-full bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
+                    <div className="relative h-48 overflow-hidden">
+                      <div className={`absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-300 z-10 flex items-center justify-center ${isHovering === mushroom.id ? 'opacity-100' : 'opacity-0'}`}>
+                        <Link 
+                          to={mushroom.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-green-600 text-white px-4 py-2 rounded-lg flex items-center space-x-2 transform transition-transform duration-300 hover:scale-105"
+                        >
+                          <ShoppingCart size={18} />
+                          <span>Buy Now</span>
+                        </Link>
+                      </div>
+                      <img
+                        src={mushroom.image}
+                        alt={mushroom.name}
+                        className="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <h3 className="text-lg font-semibold text-gray-800 mb-1">{mushroom.name}</h3>
+                      <p className="text-gray-600 text-sm mb-3 line-clamp-2">{mushroom.description}</p>
+                      <div className="flex justify-between items-center">
+                        <p className="text-lg font-bold text-green-600">{mushroom.price}</p>
+                        <div className="text-amber-500 text-sm">★★★★★</div>
+                      </div>
+                    </div>
                   </div>
-                  <div className="p-6">
-                    <h3 className="text-xl font-semibold mb-2">{mushroom.name}</h3>
-                    <p className="text-gray-600 mb-4">{mushroom.description}</p>
-                    <p className="text-lg font-bold text-green-600">{mushroom.price}</p>
-                  </div>
-                </Link>
-              </div>
+                </div>
+              ))}
+            </div>
+          </div>
+          
+          {/* Navigation Arrows */}
+          {currentSlide > 0 && (
+            <button 
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 text-green-600 p-2 rounded-full shadow-lg hover:bg-green-600 hover:text-white transition-colors duration-300 z-10"
+              onClick={() => setCurrentSlide(prev => Math.max(0, prev - 1))}
+              aria-label="Previous slide"
+            >
+              <ChevronLeft size={24} />
+            </button>
+          )}
+          
+          {currentSlide < maxSlides && (
+            <button 
+              className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 text-green-600 p-2 rounded-full shadow-lg hover:bg-green-600 hover:text-white transition-colors duration-300 z-10"
+              onClick={() => setCurrentSlide(prev => Math.min(maxSlides, prev + 1))}
+              aria-label="Next slide"
+            >
+              <ChevronRight size={24} />
+            </button>
+          )}
+          
+          {/* Pagination Indicators */}
+          <div className="flex justify-center mt-6 space-x-2">
+            {Array.from({ length: maxSlides + 1 }).map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentSlide(index)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  currentSlide === index 
+                    ? "bg-green-600 w-6" 
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
             ))}
           </div>
         </div>
         
-        <button 
-          className="absolute left-0 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-2 rounded-full shadow-lg hover:bg-green-700"
-          onClick={() => setCurrentSlide(prev => Math.min(0, prev + 1))}
-        >
-          &#8592;
-        </button>
-        
-        <button 
-          className="absolute right-0 top-1/2 transform -translate-y-1/2 bg-green-600 text-white p-2 rounded-full shadow-lg hover:bg-green-700"
-          onClick={() => setCurrentSlide(prev => Math.max(-3, prev - 1))}
-        >
-          &#8594;
-        </button>
+        {/* Call to Action */}
+        <div className="mt-16 text-center">
+          <h3 className="text-2xl font-semibold text-gray-800 mb-4">Ready to Experience Nature's Bounty?</h3>
+          <Link 
+            to="#all-products"
+            className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-green-700 hover:shadow-lg"
+          >
+            View All Products
+          </Link>
+        </div>
       </div>
     </div>
   );
