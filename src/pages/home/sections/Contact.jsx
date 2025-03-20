@@ -140,7 +140,7 @@ const Contact = () => {
                   </ListItemIcon>
                   <ListItemText>
                     <Typography color="text.primary">
-                      (233) 240 800951 
+                      (+233) 240 800951 
                     </Typography>
                   </ListItemText>
                 </ListItem>
