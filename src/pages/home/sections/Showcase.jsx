@@ -2,127 +2,135 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight, ShoppingCart } from "lucide-react";
 
-// Import product images
-import product1 from '../../../../public/images/product_images/A0004.jpg'
-import product2 from '../../../../public/images/product_images/A0005.jpg'
-import product3 from '../../../../public/images/product_images/A0006.jpg'
-import product4 from '../../../../public/images/product_images/A0007.jpg'
-import product5 from '../../../../public/images/product_images/A0008.jpg'
-import product6 from '../../../../public/images/product_images/A0009.jpg'
-import product7 from '../../../../public/images/product_images/A0010.jpg'
-import product8 from '../../../../public/images/product_images/A0011.jpg'
-import product9 from '../../../../public/images/product_images/A0012.jpg'
-import product10 from '../../../../public/images/product_images/A0013.jpg'
-import product11 from '../../../../public/images/product_images/A0014.jpg'
-import product12 from '../../../../public/images/product_images/A0015.jpg'
-import product13 from '../../../../public/images/product_images/A0016.jpg'
+// // Import product images
+// import product1 from '../../../../public/images/product_images/A0004.jpg'
+// import product2 from '../../../../public/images/product_images/A0005.jpg'
+// import product3 from '../../../../public/images/product_images/A0006.jpg'
+// import product4 from '../../../../public/images/product_images/A0007.jpg'
+// import product5 from '../../../../public/images/product_images/A0008.jpg'
+// import product6 from '../../../../public/images/product_images/A0009.jpg'
+// import product7 from '../../../../public/images/product_images/A0010.jpg'
+// import product8 from '../../../../public/images/product_images/A0011.jpg'
+// import product9 from '../../../../public/images/product_images/A0012.jpg'
+// import product10 from '../../../../public/images/product_images/A0013.jpg'
+// import product11 from '../../../../public/images/product_images/A0014.jpg'
+// import product12 from '../../../../public/images/product_images/A0015.jpg'
+// import product13 from '../../../../public/images/product_images/A0016.jpg'
+
+import freshMushroom from '../../../../public/images/actual_product/fresh mushroom.jpg'
+import gingerMushroom from '../../../../public/images/actual_product/Ginger Mushroom teabag.jpg'
+import mintMushroom from '../../../../public/images/actual_product/mint mushroom teabag.jpg'
+import mushroomTeabag from '../../../../public/images/actual_product/mushroom teabag.jpg'
+import powderedMushroom from '../../../../public/images/actual_product/powdered mushroom.jpg'
+
+
 
 const Showcase = () => {
   const mushrooms = [
     {
       id: 1,
-      name: "Shiitake Mushroom",
-      image: product1,
-      description: "Rich umami flavor, perfect for Asian cuisine",
-      price: "GH₵8.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+      name: "Powdered Mushroom",
+      image: powderedMushroom,
+      // description: "Rich umami flavor, perfect for Asian cuisine",
+      price: "GH₵ 25",
+      link: "https://paystack.com/buy/powdered-mushroom-jarasy"
     },
     {
       id: 2,
-      name: "Oyster Mushroom",
-      image: product2,
-      description: "Delicate texture with mild seafood-like flavor",
-      price: "GH₵7.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+      name: "Mushroom Teabag",
+      image: mushroomTeabag,
+      // description: "Delicate texture with mild seafood-like flavor",
+      price: "GH₵ 35",
+      link: "https://paystack.com/buy/mushroom-teabag-wrepvy"
     },
     {
       id: 3,
-      name: "King Trumpet",
-      image: product3,
-      description: "Meaty texture with subtle pine notes",
-      price: "GH₵9.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+      name: "Ginger Mushroom Teabag",
+      image: gingerMushroom,
+      // description: "Meaty texture with subtle pine notes",
+      price: "GH₵ 35",
+      link: "https://paystack.com/buy/ginger-mushroom-teabag-qandic"
     },
     {
       id: 4,
-      name: "Lion's Mane",
-      image: product4,
-      description: "Unique texture, known for cognitive benefits",
-      price: "GH₵12.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+      name: "Fresh Mushroom",
+      image: freshMushroom,
+      // description: "Unique texture, known for cognitive benefits",
+      price: "GH₵ 25",
+      link: "https://paystack.com/buy/fresh-mushroom-jgqswm"
     },
     {
       id: 5,
-      name: "Reishi",
-      image: product5,
-      description: "Traditional medicinal mushroom for wellness",
-      price: "GH₵14.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+      name: "Mint Mushroom Teabag",
+      image: mintMushroom,
+      // description: "Traditional medicinal mushroom for wellness",
+      price: "GH₵ 35",
+      link: "https://paystack.com/buy/mint-mushroom-teabag-rryrjl"
     },
-    {
-      id: 6,
-      name: "Maitake",
-      image: product6,
-      description: "Rich, woodsy flavor with immune benefits",
-      price: "GH₵11.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 7,
-      name: "Enoki",
-      image: product7,
-      description: "Delicate, crispy texture perfect for soups",
-      price: "GH₵6.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 8,
-      name: "Cordyceps",
-      image: product8,
-      description: "Energy-boosting medicinal mushroom",
-      price: "GH₵15.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 9,
-      name: "Chaga",
-      image: product9,
-      description: "Powerful antioxidant properties",
-      price: "GH₵13.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 10,
-      name: "Turkey Tail",
-      image: product10,
-      description: "Beautiful pattern, immune system support",
-      price: "GH₵10.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 11,
-      name: "Wood Ear",
-      image: product11,
-      description: "Crunchy texture, great in Asian dishes",
-      price: "GH₵8.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 12,
-      name: "Porcini",
-      image: product12,
-      description: "Rich, nutty flavor perfect for Italian cuisine",
-      price: "GH₵16.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    },
-    {
-      id: 13,
-      name: "King Trumpet",
-      image: product13,
-      description: "Meaty texture with mild seafood notes",
-      price: "GH₵13.99",
-      link: "https://paystack.com/buy/mushroom-tea-mjdywc"
-    }
+    // {
+    //   id: 6,
+    //   name: "Mushroom Teabag",
+    //   image: mintMushroom,
+    //   // description: "Rich, woodsy flavor with immune benefits",
+    //   price: "GH₵ 35",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 7,
+    //   name: "Enoki",
+    //   image: product7,
+    //   description: "Delicate, crispy texture perfect for soups",
+    //   price: "GH₵6.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 8,
+    //   name: "Cordyceps",
+    //   image: product8,
+    //   description: "Energy-boosting medicinal mushroom",
+    //   price: "GH₵15.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 9,
+    //   name: "Chaga",
+    //   image: product9,
+    //   description: "Powerful antioxidant properties",
+    //   price: "GH₵13.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 10,
+    //   name: "Turkey Tail",
+    //   image: product10,
+    //   description: "Beautiful pattern, immune system support",
+    //   price: "GH₵10.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 11,
+    //   name: "Wood Ear",
+    //   image: product11,
+    //   description: "Crunchy texture, great in Asian dishes",
+    //   price: "GH₵8.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 12,
+    //   name: "Porcini",
+    //   image: product12,
+    //   description: "Rich, nutty flavor perfect for Italian cuisine",
+    //   price: "GH₵16.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // },
+    // {
+    //   id: 13,
+    //   name: "King Trumpet",
+    //   image: product13,
+    //   description: "Meaty texture with mild seafood notes",
+    //   price: "GH₵13.99",
+    //   link: "https://paystack.com/buy/mushroom-tea-mjdywc"
+    // }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -209,7 +217,7 @@ const Showcase = () => {
                   onMouseLeave={() => setIsHovering(null)}
                 >
                   <div className="relative h-full bg-white rounded-xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
-                    <div className="relative h-48 overflow-hidden">
+                    <div className="relative h-48 md:h-64 overflow-hidden">
                       <div className={`absolute inset-0 bg-black bg-opacity-20 transition-opacity duration-300 z-10 flex items-center justify-center ${isHovering === mushroom.id ? 'opacity-100' : 'opacity-0'}`}>
                         <Link 
                           to={mushroom.link}
@@ -224,15 +232,17 @@ const Showcase = () => {
                       <img
                         src={mushroom.image}
                         alt={mushroom.name}
-                        className="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110"
+                        className="w-full h-full object-cover md:object-[50%_31%] transition-transform duration-500 transform hover:scale-110"
                       />
                     </div>
                     <div className="p-4">
-                      <h3 className="text-lg font-semibold text-gray-800 mb-1">{mushroom.name}</h3>
-                      <p className="text-gray-600 text-sm mb-3 line-clamp-2">{mushroom.description}</p>
+                      <h3 className="text-xl font-semibold text-gray-800 mb-3">{mushroom.name}</h3>
                       <div className="flex justify-between items-center">
                         <p className="text-lg font-bold text-green-600">{mushroom.price}</p>
-                        <div className="text-amber-500 text-sm">★★★★★</div>
+                        <div className="flex items-center">
+                          <span className="text-amber-500 text-lg mr-1">★★★★★</span>
+                          <span className="text-gray-500 text-sm">(5.0)</span>
+                        </div>
                       </div>
                     </div>
                   </div>

@@ -59,13 +59,12 @@ const AboutInnovator = () => {
 
         {/* Active Team Member Display */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div className="relative group">
+          <div className="relative group p-4">
             <img
               src={teamMembers[activeTeamMember].image}
               alt={teamMembers[activeTeamMember].name}
-              className="rounded-2xl shadow-2xl w-full h-[400px] object-cover object-[50%_31%] transition-transform duration-500 group-hover:scale-105"
+              className="rounded-2xl shadow-2xl w-full h-[400px] md:h-[550px] object-cover transition-transform duration-500 group-hover:scale-105"
             />
-
             <div className="hidden md:block absolute inset-0 rounded-2xl bg-gradient-to-t from-[#2e7d32]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="hidden md:block absolute -top-4 -right-4 w-full h-full border-2 border-[#2e7d32]/40 rounded-2xl -z-10 transition-transform duration-500 group-hover:translate-x-3 group-hover:translate-y-3"></div>
           </div>
